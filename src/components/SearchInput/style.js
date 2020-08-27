@@ -8,6 +8,8 @@ export const SearchContainer = styled.div`
 
   input {
     width: 50%;
+    border: 1px solid gray;
+    border-radius: 5px;
   }
 
   button {
