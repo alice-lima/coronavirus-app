@@ -5,7 +5,6 @@ function Table(props) {
   const { data } = props;
 
   const keys = Object.keys(data[0]);
-  const world = data.splice(0, 1);
 
   return (
     <table>

@@ -4,20 +4,24 @@ import { bindActionCreators } from "redux";
 import { getDados } from "../../actions";
 import { Container } from "./style";
 import Table from "../../components/Table";
+import SearchInput from "../../components/SearchInput";
 
 function HomePage(props) {
   const { paises, getDados } = props;
 
+  const [displayedItems, setDisplayedItems] = useState(paises);
+
   useEffect(() => getDados(), [getDados]);
+
+  useEffect(() => setDisplayedItems(paises), [paises]);
 
   return (
     <div>
-      {paises.length > 0 && (
-        <Container>
-          <h2>Covid-19 around the World</h2>
-          <Table data={paises} />
-        </Container>
-      )}
+      <Container>
+        <SearchInput items={paises} setDisplayedItems={setDisplayedItems} />
+        <h2>Covid-19 around the World</h2>
+        {displayedItems.length > 0 && <Table data={displayedItems} />}
+      </Container>
     </div>
   );
 }
