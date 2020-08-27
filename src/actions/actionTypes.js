@@ -1,4 +1,4 @@
 
 export const GET_DADOS = 'GET_DADOS';
-export const SUCCESSFUL_GET_DADOS = 'GET_DADOS';
-export const ERROR_GET_DADOS = 'GET_DADOS';
+export const SUCCESSFUL_GET_DADOS = 'SUCCESSFUL_GET_DADOS';
+export const ERROR_GET_DADOS = 'ERROR_GET_DADOS';
