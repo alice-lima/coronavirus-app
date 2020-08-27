@@ -25,3 +25,5 @@ function SearchInput(props) {
 
   return <input onChange={(evt, data) => setSearchValue(data.value)} />;
 }
+
+export default SearchInput;

@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDados } from "../../actions";
+import { Container } from "./style";
+import Table from "../../components/Table";
 
 function HomePage(props) {
   const { paises, getDados } = props;
 
+  useEffect(() => getDados(), [getDados]);
+
   return (
     <div>
-      <h1>TESTE HOME PAGE</h1>
-      <button onClick={() => getDados()}>Get Dados</button>
-      <ul>
-        {paises.map((pais) => {
-          return <li>{pais.country}</li>;
-        })}
-      </ul>
+      {paises.length > 0 && (
+        <Container>
+          <h2>Covid-19 around the World</h2>
+          <Table data={paises} />
+        </Container>
+      )}
     </div>
   );
 }
