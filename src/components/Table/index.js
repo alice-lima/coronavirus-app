@@ -1,17 +1,24 @@
 import React from "react";
-import { Header, Cell } from "./style";
+import { Header, Cell, Row } from "./style";
 
 function Table(props) {
   const { data } = props;
 
-  const keys = Object.keys(data[0]);
-
   return (
     <table>
       <tr>
-        {keys.map((k) => {
-          return <Header>{k}</Header>;
-        })}
+        <Header>País</Header>
+        <Header>Casos</Header>
+        <Header>Casos - Hoje</Header>
+        <Header>Mortes</Header>
+        <Header>Mortes - Hoje</Header>
+        <Header>Recuperados</Header>
+        <Header>Ativos</Header>
+        <Header>Críticos</Header>
+        <Header>Casos p/milhão</Header>
+        <Header>Mortes p/milhão</Header>
+        <Header>Total de testes</Header>
+        <Header>Testes p/milhão</Header>
       </tr>
 
       {data.map((countryParam) => {
@@ -30,7 +37,7 @@ function Table(props) {
           testsPerOneMillion,
         } = countryParam;
         return (
-          <tr>
+          <Row>
             <Cell>{country}</Cell>
             <Cell>{cases}</Cell>
             <Cell>{todayCases}</Cell>
@@ -43,7 +50,7 @@ function Table(props) {
             <Cell>{deathsPerOneMillion}</Cell>
             <Cell>{totalTests}</Cell>
             <Cell>{testsPerOneMillion}</Cell>
-          </tr>
+          </Row>
         );
       })}
     </table>

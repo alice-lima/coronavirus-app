@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { getDados } from "../../actions";
 import Table from "../../components/Table";
 import SearchInput from "../../components/SearchInput";
 import Card from "../../components/Card";
-import { Container, Cabecalho } from "./style";
+import { Container, Cabecalho, Titulo } from "./style";
+import CardWorld from "../../components/CardWorld";
 
 function HomePage(props) {
   const { paises } = props;
@@ -40,6 +40,8 @@ function HomePage(props) {
   return (
     <div>
       <Container>
+        {console.log(ordenados)}
+        <Titulo>Covid-19 ao redor do mundo</Titulo>
         <div className="cardsRow">
           <Card
             title="Os 5 países com maior número de casos"
@@ -49,10 +51,10 @@ function HomePage(props) {
             title="Os 5 países com menor número de casos"
             data={ordenados.splice(ordenados.length - 5, 5)}
           />
+          <CardWorld number={ordenados.length > 0 ? ordenados[0].cases : 0} />
         </div>
 
         <Cabecalho>
-          <h2>Covid-19 ao redor do mundo</h2>
           <SearchInput items={paises} setDisplayedItems={setDisplayedItems} />
         </Cabecalho>
         {displayedItems.length > 0 && <Table data={displayedItems} />}

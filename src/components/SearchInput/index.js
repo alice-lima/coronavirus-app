@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { SearchContainer } from "./style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { SearchContainer, InputIcones, PrimaryButton } from "./style";
 
 function SearchInput(props) {
   const { items, setDisplayedItems } = props;
@@ -28,17 +30,23 @@ function SearchInput(props) {
 
   return (
     <SearchContainer>
-      <input
-        onChange={(evt) => setSearchValue(evt.target.value)}
-        value={searchValue}
-        placeholder="Buscar"
-      />
+      <InputIcones>
+        <FontAwesomeIcon icon={faSearch} size="lg" />
+        <input
+          onChange={(evt) => setSearchValue(evt.target.value)}
+          value={searchValue}
+          placeholder="Buscar"
+        />
+
+        {searchValue.length > 0 && (
+          <button onClick={() => handleLimpar()}>&times;</button>
+        )}
+      </InputIcones>
 
       <div>
-        <button onClick={() => handleLimpar()}>Limpar</button>
-        <button onClick={() => search()} className="primary">
+        <PrimaryButton onClick={() => search()} className="primary">
           Buscar
-        </button>
+        </PrimaryButton>
       </div>
     </SearchContainer>
   );

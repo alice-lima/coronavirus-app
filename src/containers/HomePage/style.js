@@ -8,13 +8,18 @@ export const Container = styled.div`
   padding: 3rem;
 
   .cardsRow {
-    width: 60%;
     display: flex;
-    justify-content: space-between;
+    margin-left: -24px;
   }
 `;
 
 export const Cabecalho = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const Titulo = styled.h1`
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 24px;
 `;
