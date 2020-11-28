@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDados } from "../../actions";
 import Table from "../../components/Table";
@@ -8,9 +8,11 @@ import Card from "../../components/Card";
 import { Container, Cabecalho } from "./style";
 
 function HomePage(props) {
-  const { paises, getDados } = props;
+  const { paises } = props;
 
   const [displayedItems, setDisplayedItems] = useState(paises);
+
+  const dispatch = useDispatch();
 
   const ordenados = [...paises];
 
@@ -24,7 +26,14 @@ function HomePage(props) {
     return 0;
   });
 
-  useEffect(() => getDados(), [getDados]);
+  const getDadosAPI = () => {
+    dispatch(getDados());
+  };
+
+  useEffect(() => {
+    getDadosAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => setDisplayedItems(paises), [paises]);
 
@@ -56,7 +65,9 @@ const mapStateToProps = (state) => ({
   paises: state.paisesStore.paises,
 });
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ getDados }, dispatch);
+/* const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ getDados }, dispatch); */
+
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
